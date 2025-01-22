@@ -44,7 +44,7 @@ This project provides a RESTful API for predicting machine failure in manufactur
    predictive-api/
    ├── app.py                  # Main Flask application
    ├── model/                 # Directory to store trained models
-   │   └── pipeline.joblib    # Trained model file (generated after training)
+   │   └── best_pipeline.joblib    # Trained model file (generated after training)
    ├── data/                  # Directory to store uploaded datasets
    ├── README.md              # Documentation
    └── requirements.txt       # List of required dependencies
@@ -138,12 +138,12 @@ This project provides a RESTful API for predicting machine failure in manufactur
 ## Notes
 
 - Ensure the dataset contains all the required columns (`Tool wear [min]`, `Torque [Nm]`, `Power`, etc.).
-- The trained model is saved as `pipeline.joblib` in the `model/` directory.
+- The trained model is saved as `best_pipeline.joblib` in the `model/` directory.
 - Retrain the model if the dataset changes significantly.
 
 ---
 
-Feel free to customize this README to match your specific project requirements!
+
 
 
 
