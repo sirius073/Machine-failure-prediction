@@ -102,16 +102,20 @@ def predict():
 
         # Parse input
         input_data = request.json
-        features = ['Tool wear [min]', 'Torque [Nm]', 'Power', 'Rotational speed [rpm]']
+        features = ['Tool wear [min]', 'Torque [Nm]', 'Rotational speed [rpm]']
         input_values = [input_data.get(feat) for feat in features]
 
         # Validate inputs
         if None in input_values:
             missing_features = [feat for feat, val in zip(features, input_values) if val is None]
             return jsonify({"error": f"Missing features: {', '.join(missing_features)}"}), 400
+        
+        torque = input_data['Torque [Nm]']
+        rotational_speed = input_data['Rotational speed [rpm]']
+        power = torque * 2 * np.pi * rotational_speed / 60
 
         # Prepare input for prediction
-        input_df = pd.DataFrame([input_values], columns=features)
+        input_df = pd.DataFrame([input_values + [power]], columns=features + ['Power'])
         prediction = model.predict(input_df)
         confidence = model.predict_proba(input_df)[0].max()
 
