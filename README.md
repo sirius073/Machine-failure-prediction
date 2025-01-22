@@ -70,7 +70,7 @@ This project provides a RESTful API for predicting machine failure in manufactur
 - **Description:** Upload a CSV file containing manufacturing data.
 - **Request:**
   ```bash
-  curl -X POST -F "file=@data/train.csv" http://127.0.0.1:5000/upload
+  curl -X POST -F "file=@E:\ml projects\techpranee\data\train.csv" http://127.0.0.1:5000/upload
   ```
 - **Response:**
   ```json
@@ -88,7 +88,7 @@ This project provides a RESTful API for predicting machine failure in manufactur
 - **Description:** Train the predictive model using the uploaded dataset.
 - **Request:**
   ```bash
-  curl -X POST -H "Content-Type: application/json" -d '{"file_path": "data/train.csv"}' http://127.0.0.1:5000/train
+  curl -X POST -H "Content-Type: application/json" -d "{\"file_path\": \"data/train.csv\"}" http://127.0.0.1:5000/train
   ```
 - **Response:**
   ```json
@@ -108,12 +108,7 @@ This project provides a RESTful API for predicting machine failure in manufactur
 - **Description:** Make predictions based on input feature values.
 - **Request:**
   ```bash
-  curl -X POST -H "Content-Type: application/json" -d '{
-      "Tool wear [min]": 120,
-      "Torque [Nm]": 50,
-      "Power": 10,
-      "Rotational speed [rpm]": 1500
-  }' http://127.0.0.1:5000/predict
+  curl -X POST -H "Content-Type: application/json" -d "{\"Tool wear [min]\": 120, \"Torque [Nm]\": 50, \"Rotational speed [rpm]\": 1500}" http://127.0.0.1:5000/predict
   ```
 - **Response:**
   ```json
@@ -135,7 +130,7 @@ This project provides a RESTful API for predicting machine failure in manufactur
 
 ## Notes
 
-- Ensure the dataset contains all the required columns (`Tool wear [min]`, `Torque [Nm]`, `Power`, etc.).
+- Ensure the dataset contains all the required columns (`Tool wear [min]`, `Torque [Nm]`, etc.).
 - The trained model is saved as `best_pipeline.joblib` in the `model/` directory.
 - Retrain the model if the dataset changes significantly.
 - A Jupyter Notebook named `machine-failure.ipynb` is available in the `model/` directory. It contains the model training process on a sample dataset from Kaggle, which can be found [here](https://www.kaggle.com/competitions/machine-failure-prediction-iti-data-science).
