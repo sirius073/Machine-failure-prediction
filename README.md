@@ -44,8 +44,10 @@ This project provides a RESTful API for predicting machine failure in manufactur
    predictive-api/
    ├── app.py                  # Main Flask application
    ├── model/                 # Directory to store trained models
-   │   └── best_pipeline.joblib    # Trained model file (generated after training)
+   │   ├── best_pipeline.joblib    # Trained model file (generated after training)
+   │   └── machine-failure.ipynb   # Notebook with training on Kaggle dataset
    ├── data/                  # Directory to store uploaded datasets
+   │   └── train.csv           # Sample dataset from Kaggle
    ├── README.md              # Documentation
    └── requirements.txt       # List of required dependencies
    ```
@@ -110,11 +112,7 @@ This project provides a RESTful API for predicting machine failure in manufactur
       "Tool wear [min]": 120,
       "Torque [Nm]": 50,
       "Power": 10,
-      "Rotational speed [rpm]": 1500,
-      "TWF": 1,
-      "HDF": 0,
-      "PWF": 0,
-      "OSF": 0
+      "Rotational speed [rpm]": 1500
   }' http://127.0.0.1:5000/predict
   ```
 - **Response:**
@@ -140,11 +138,7 @@ This project provides a RESTful API for predicting machine failure in manufactur
 - Ensure the dataset contains all the required columns (`Tool wear [min]`, `Torque [Nm]`, `Power`, etc.).
 - The trained model is saved as `best_pipeline.joblib` in the `model/` directory.
 - Retrain the model if the dataset changes significantly.
+- A Jupyter Notebook named `machine-failure.ipynb` is available in the `model/` directory. It contains the model training process on a sample dataset from Kaggle, which can be found [here](https://www.kaggle.com/competitions/machine-failure-prediction-iti-data-science).
+- The `train.csv` file used for training is included in the `data/` directory.
 
 ---
-
-
-
-
-
-
